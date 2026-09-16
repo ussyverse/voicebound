@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+.runtime/
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.wav
+*.webm
+*.sqlite*
+BUILD_TASK.txt
