@@ -14,4 +14,12 @@ $('record').onclick=async()=>{try{if(!window.isSecureContext||!navigator.mediaDe
 $('stop').onclick=()=>{if(recorder?.state==='recording')recorder.stop()};$('transcribe').onclick=()=>run(async()=>{if(!$('consent').checked)throw Error('Please consent to AssemblyAI audio processing first.');if(!recorded)throw Error('Record a question first.');const f=new FormData();f.append('audio',recorded,'question.'+(recorded.type.includes('mp4')?'mp4':recorded.type.includes('ogg')?'ogg':'webm'));notice('AssemblyAI is transcribing. Your game will not advance until you confirm with Ask.');const r=await api('/api/transcribe',f);$('question').value=r.text;notice('AssemblyAI transcript ready. Review/edit it, then click Ask selected suspect.')});
 (async()=>{try{const s=await api('/api/status');if(s.text_only){document.body.classList.add('text-only');$('question').placeholder='Type your question for Luna…';} $('providers').textContent=s.text_only?'Text demo · Luna: '+s.providers.model+' · Voice temporarily disabled':['AssemblyAI: '+(s.providers.assemblyai?'configured (not live-verified)':'key needed'),'Luna: '+(s.providers.luna?s.providers.model:'not configured'),'OmniVoice: '+(s.providers.omnivoice?'configured':'not configured')].join(' · ');try{state=await api('/api/state');render();notice('Saved case restored.')}catch{notice('Start a new case. Voice input needs your AssemblyAI API key configured server-side.')}}catch(e){notice(e.message,true)}})();
 
-window.addEventListener('voicebound-interact',e=>{if(!state)return;const {kind,id}=e.detail;if(kind==='inspect'&&state.places.some(p=>p.id===id))act('inspect',id);else if(kind==='talk'&&state.cast.some(c=>c.id===id)){selected=id;render();$('question').scrollIntoView({behavior:'smooth',block:'center'});$('question').focus();notice('Speaking with '+state.cast.find(c=>c.id===id).name+'. Ask a question below.')}});
+let openingCase=null;
+window.addEventListener('voicebound-interact',async e=>{
+ try{
+  if(!state){if(!openingCase)openingCase=(async()=>{try{return await api('/api/state')}catch{return await api('/api/new',{})}})().finally(()=>openingCase=null);state=await openingCase;render();}
+  const {kind,id}=e.detail;
+  if(kind==='inspect'&&state.places.some(p=>p.id===id)){await act('inspect',id);$('clues').scrollIntoView({behavior:'smooth',block:'center'});}
+  else if(kind==='talk'&&state.cast.some(c=>c.id===id)){selected=id;render();$('question').scrollIntoView({behavior:'smooth',block:'center'});$('question').focus({preventScroll:true});notice('Speaking with '+state.cast.find(c=>c.id===id).name+'. Type your question and click Ask selected suspect.');}
+ }catch(error){notice(error.message,true);$('status').scrollIntoView({block:'center'});}
+});
