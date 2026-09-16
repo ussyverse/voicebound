@@ -86,3 +86,7 @@ The human entrant registers/submits and owns their decisions. Development used A
 The interface now includes a locally bundled Three.js 0.170.0 scene. WASD/arrows walk, dragging looks around, and E interacts with nearby desks or people. Touch buttons support movement, turning and interaction. Desks reveal existing engine clues; approaching a character selects the existing Luna/voice conversation panel. Solid desks, people and perimeter walls block movement. Escape releases controls. The complete text interface remains available without WebGL. These are original procedural placeholder assets, not final art. No CDN is required at runtime. Third-party Three.js MIT license: `static/vendor/THREE-LICENSE.txt`.
 
 Verified in Chromium: WebGL rendering, walking to Inez and selecting dialogue, walking to the archive and discovering its actual clue, mobile width and no JavaScript exceptions.
+
+## Immersive scene mode
+
+The default presentation fills the browser window. Opening story, proximity prompt, casebook, witness conversations, editable questions and accusation confirmation are drawn as Three.js canvas-texture UI inside the rendered scene. WASD/arrows move; drag looks; E interacts; J opens the casebook; Escape returns to exploration. Click the question area and type, then Enter to ask Luna. On-screen arrows provide short touch movement steps. Text view retains the accessible page interface. This is an atmosphere/interface upgrade to the existing fixed mystery, not a new procedural campaign.

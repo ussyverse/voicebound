@@ -3,3 +3,5 @@
 #viewport{height:480px;width:100%;border:1px solid var(--line);touch-action:none;overflow:hidden}#viewport canvas{display:block}#viewport:focus{outline:2px solid var(--gold)}#world-controls button{touch-action:none;user-select:none}#world-hint{color:var(--gold)}@media(max-width:740px){#viewport{height:340px}}
 
 .text-only #record,.text-only #stop,.text-only #transcribe,.text-only .consent,.text-only .consent + p,.text-only #silence,.text-only .line button,.text-only audio{display:none!important}
+
+body.immersive{overflow:hidden}body.immersive header,body.immersive #game,body.immersive footer,body.immersive #status,body.immersive #providers,body.immersive #world>h2,body.immersive #world>p,body.immersive #world-controls{display:none!important}body.immersive main{padding:0;margin:0;max-width:none}body.immersive #viewport{position:fixed;inset:0;width:100vw;height:100dvh;border:0;outline:0}.scene-keyboard{position:fixed;left:0;bottom:0;width:1px;height:1px;opacity:.01;pointer-events:none}
