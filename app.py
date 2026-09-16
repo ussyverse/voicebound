@@ -69,7 +69,7 @@ def sid(request):
 def index():return FileResponse(ROOT/'static/index.html')
 
 @app.get('/api/status')
-def status():return {'providers':providers.config(),'voice_complete':False,'note':'AssemblyAI voice path requires live verification; typed play alone is not the sponsor demo.'}
+def status():return {'text_only':os.getenv('VOICEBOUND_TEXT_ONLY')=='1','providers':providers.config(),'voice_complete':False,'note':'AssemblyAI voice path requires live verification; typed play alone is not the sponsor demo.'}
 
 @app.post('/api/new')
 def new(request:Request):
