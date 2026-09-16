@@ -80,3 +80,9 @@ The human entrant registers/submits and owns their decisions. Development used A
 ## Privacy and storage
 
 `.env` and `.runtime/` are ignored. Treat the browser cookie as a case capability; the SQLite database contains dialogue and evidence and must be protected. Cases currently have no automatic deletion UI/retention job; stop the app and remove your runtime directory to clear local cases/audio. This does not delete data held by providers. Review that limitation before public deployment. Audio cache, provider requests and API keys stay server-side; neither model responses nor user input are inserted as HTML.
+
+## Walkable Three.js station
+
+The interface now includes a locally bundled Three.js 0.170.0 scene. WASD/arrows walk, dragging looks around, and E interacts with nearby desks or people. Touch buttons support movement, turning and interaction. Desks reveal existing engine clues; approaching a character selects the existing Luna/voice conversation panel. Solid desks, people and perimeter walls block movement. Escape releases controls. The complete text interface remains available without WebGL. These are original procedural placeholder assets, not final art. No CDN is required at runtime. Third-party Three.js MIT license: `static/vendor/THREE-LICENSE.txt`.
+
+Verified in Chromium: WebGL rendering, walking to Inez and selecting dialogue, walking to the archive and discovering its actual clue, mobile width and no JavaScript exceptions.
