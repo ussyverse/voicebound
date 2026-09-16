@@ -21,7 +21,7 @@ New standalone original story/code started during the listed build period. No pr
 - [ ] Confirm personal eligibility and event-specific terms during enrollment.
 - [ ] Confirm organizer permission for our AI-assisted development workflow and external Luna/OmniVoice tools if not explicit in event-specific terms. An AI-themed event is not blanket permission for unauthorized automation.
 - [ ] End-to-end real AssemblyAI microphone -> transcript -> confirmed player action -> Luna dialogue -> OmniVoice audio demonstration.
-- [ ] Public GitHub repository with original code, licensing and setup instructions.
+- [x] Public GitHub repository with original code, licensing and setup instructions: https://github.com/ussyverse/voicebound
 - [ ] Interactive application URL. General rules name Streamlit, Replit or Vercel. Target Replit for the FastAPI app; do not count a loopback/private test URL as satisfying this. Production needs private authenticated connectivity to inference/voice services; never expose the broad OmniVoice Studio API.
 - [ ] 16:9 PNG/JPG cover image.
 - [ ] MP4 presentation and PDF pitch slides.
